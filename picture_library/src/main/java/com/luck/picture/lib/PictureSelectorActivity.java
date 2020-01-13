@@ -201,6 +201,17 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
                 config.isCheckOriginalImage = isChecked;
             });
         }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (!config.isFallbackVersion2 || Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+                    if (!isFirstEnterActivity) {
+                        loadAllMediaData();
+                        isFirstEnterActivity = true;
+                    }
+                }
+            }
+        }, 100);
     }
 
     @Override
